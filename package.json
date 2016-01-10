@@ -1,11 +1,13 @@
 {
-  "name": "browsing_history_stat",
+  "name": "chrome_history_stat",
   "version": "1.0.0",
   "description": "统计 chrome 历史浏览记录",
-  "main": "main.js",
-  "author": "liujiacai@net",
+  "main": "app.js",
+  "author": "liujiacai.net",
   "license": "MIT",
   "dependencies": {
+    "ejs": "^2.3.4",
+    "express": "^4.13.3",
     "moment": "^2.11.1",
     "sqlite3": "^3.1.1",
     "underscore": "^1.8.3"

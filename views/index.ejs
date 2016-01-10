@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link type="text/css" rel="stylesheet" href="/css/index.css"/>
+    <title>2015 年 Chrome 浏览量统计</title>
+</head>
+
+<body>
+    <div id="dailyVisits" style="height:500px;border:1px solid #ccc;padding:10px;"></div>
+    <div id="URLsPercent" style="height:500px;border:1px solid #ccc;padding:10px;"></div>
+    <script src="/js/echarts.js"></script>
+    <script src="/js/underscore-min.js"></script>
+    <script src="/js/chrome.js"></script>
+    <script type="text/javascript">
+    var dailyVisits = JSON.parse('<%-dailyVisits%>');
+    var urlsFreq = JSON.parse('<%-urlsFreq%>');
+    
+    require.config({
+        paths: {
+            echarts: '/js'
+        }
+    });
+    require(
+        [
+            'echarts',
+            'echarts/chart/line',
+            'echarts/chart/pie',
+            'echarts/chart/funnel'
+        ],
+        initCharts
+    );
+    </script>
+    <table>
+        <caption>网站访问量 TOP 100</caption>
+        <tr>
+            <th></th>
+            <th>网站标题</th>
+            <th>访问量</th>
+        </tr>
+        <%
+            urlsFreq = JSON.parse(urlsFreq);
+            for(var i=0; i<urlsFreq.length; i++) {
+        %>        
+            <tr>
+                <td><%=(i+1)%></td>
+                <td><%=urlsFreq[i][0]%></td>
+                <td><%=urlsFreq[i][1]%></td>
+            </tr>
+        <%
+            }
+        %>
+    </table>
+</body>
+</html>

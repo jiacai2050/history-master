@@ -1,7 +1,8 @@
 {
-    "chrome_history_file": "/Users/liujiacai/Library/Application Support/Google/Chrome/Default/History",
+    "port": 5210,
+    "chrome_history_file": "/Users/liujiacai/Desktop/History",
     "export_file" : {
-        "countDailyUsage": "/Users/liujiacai/Desktop/countDailyUsage.csv",
+        "countDailyVisits": "/Users/liujiacai/Desktop/countDailyVisits.csv",
         "countURLsFrequence": "/Users/liujiacai/Desktop/countURLsFrequence.csv"
     },
     "count_range": {
