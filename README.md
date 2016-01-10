@@ -6,9 +6,9 @@
 
 ## 功能
 
-1. 使用[ECharts](https://github.com/ecomfe/echarts) +[Express](http://expressjs.com/) 提供基于 canvas 的图表展示
-2. 统计经常访问网址的访问次数，导出到 csv 文件
-3. 按天统计 Chrome 浏览记录，导出到 csv 文件
+1. 使用[ECharts](https://github.com/ecomfe/echarts) + [Express](http://expressjs.com/) 提供基于 canvas 的图表展示
+2. 统计高频网址的访问次数，导出到 csv 文件
+3. 按天统计历史浏览记录，导出到 csv 文件
 4. ...
 
 更多功能，等着你来实现😊
@@ -43,7 +43,7 @@ npm install
 
 其他操作系统`History`文件的位置可以自行 Google 。也欢迎大家告诉我，我会及时更新这里的说明。
 
-最后，就可以运行我们的服务了：
+修改后`config.json`后，就可以运行我们的服务了：
 ```
 $ node app
 
@@ -56,7 +56,7 @@ Listening on port 5210 ...
 ![chrome_history_percent](screenshots/percent.png)
 ![chrome_history_table](screenshots/table.png)
 
-当然，除了在线浏览，你还可以把数据导出为 CSV 文件。直接在命令行执行下面的命令：
+当然，除了在线浏览，还可以把数据导出为 CSV 文件。直接在命令行执行下面的命令：
 ```
 ./lib/export.js help    # 查看使用说明
 ./lib/export.js day     # 按天统计 Chrome 浏览记录，导出到 csv 文件
