@@ -1,0 +1,11 @@
+{
+    "chrome_history_file": "/Users/liujiacai/Library/Application Support/Google/Chrome/Default/History",
+    "export_file" : {
+        "countDailyUsage": "/Users/liujiacai/Desktop/countDailyUsage.csv",
+        "countURLsFrequence": "/Users/liujiacai/Desktop/countURLsFrequence.csv"
+    },
+    "count_range": {
+        "start": "2015/01/01",
+        "end": "2016/01/01"
+    }
+}
