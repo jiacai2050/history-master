@@ -6,7 +6,7 @@
 
 ## 功能
 
-1. 使用[ECharts](https://github.com/ecomfe/echarts) + [Express](http://expressjs.com/) 提供基于 canvas 的图表展示
+1. 使用 [ECharts](https://github.com/ecomfe/echarts) + [Express](http://expressjs.com/) 提供基于 canvas 的图表展示
 2. 统计高频网址的访问次数，导出到 csv 文件
 3. 按天统计历史浏览记录，导出到 csv 文件
 4. ...
@@ -16,13 +16,17 @@
 
 ## 使用
 
+### 0. 安装 [Node.js](https://nodejs.org/)
+
+由于本库使用了[template strings](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/template_strings)，所以需要`v4.0.0`以及之上的版本。
+
 ### 1. 下载本库，并安装依赖
 ```
-git clone https://github.com/jiacai2050/chrome-history-stat.git && cd chrome-history-stat
+git clone https://github.com/jiacai2050/chrome-history-stat.git
 npm install
 ```
 ### 2. 修改配置文件`config.json`
-本库中`config.json`默认为我 Mac 上的配置，你需要根据自己的情况进行修改：
+`config.json`默认为我在自己的 Mac 上使用的配置，你需要根据自己的情况进行修改：
 ```
 {
     "port": 5210,
@@ -37,24 +41,36 @@ npm install
     }
 }
 ```
-其中的`chrome_history_file` 指明 Chrome 保存在本地的历史浏览文件，上面示例为我 Mac 上的位置。在 Chrome 打开的情况下如果直接从默认位置读取，会报下面的错误：
+- `chrome_history_file` 指明 Chrome 保存在本地的历史浏览文件。
+- `count_range` 指明统计的时间范围
+
+在 Chrome 打开的情况下，如果直接从默认位置读取`History`文件，会报下面的错误：
 ```
 { [Error: SQLITE_BUSY: database is locked] errno: 5, code: 'SQLITE_BUSY' }
 ```
-所以我这里把`History`文件拷贝到了桌面上。各大操作系统`History`文件位置大致如下：
+所以我这里把`History`文件拷贝到了桌面上。为了避免上面的错误，大家最好也把`History`文件从默认位置拷贝到桌面上再使用。
+
+各大操作系统`History`文件位置大致如下（参考[这里](http://www.forensicswiki.org/wiki/Google_Chrome)）：
 
 - Linux
+
     `/home/$USER/.config/google-chrome/Default/History`
+
 - MacOS
+
     `/Users/$USER/Library/Application Support/Google/Chrome/Default/History`
+
 - Windows XP
+
     `C:\Documents and Settings\%USERNAME%\Local Settings\Application Data\Google\Chrome\User Data\Default\History`
+    
 - Windows Vista 以及之后的版本
+
     `C:\Users\%USERNAME%\AppData\Local\Google\Chrome\User Data\Default\History`
 
-为了避免上面的错误，大家最好把`History`文件从默认位置拷贝到桌面上再使用。
 
 ### 3. 启动服务
+
 修改完`config.json`后，就可以运行我们的服务了：
 ```
 $ node app
@@ -63,7 +79,7 @@ $ node app
 add router: /chrome
 Listening on port 5210 ...
 ```
-服务成功启动后，就可以打开浏览器访问了：http://localhost:5210
+服务成功启动后，就可以打开浏览器访问了：`http://localhost:5210`
 
 ![chrome_history_trend](screenshots/trend.png)
 ![chrome_history_percent](screenshots/percent.png)
