@@ -18,7 +18,7 @@
 
 ### 1. 下载本库，并安装依赖
 ```
-git clone https://github.com/jiacai2050/chrome-history-stat.git
+git clone https://github.com/jiacai2050/chrome-history-stat.git && cd chrome-history-stat
 npm install
 ```
 ### 2. 修改配置文件`config.json`
