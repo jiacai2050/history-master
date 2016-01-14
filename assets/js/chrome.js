@@ -3,6 +3,7 @@ function initCharts(ec) {
     initURLsPercent(ec);
 }
 function initDailyVisits(ec) {
+    var ecConfig = require('echarts/config');
     //--- 折柱 ---
     var dailyVisitsChart = ec.init(document.getElementById('dailyVisits'));
     dailyVisitsChart.setOption({
@@ -66,6 +67,10 @@ function initDailyVisits(ec) {
             }
         ]
     });
+    dailyVisitsChart.on(ecConfig.EVENT.CLICK, function(param) {
+        window.open("/chrome/details/" + param.data[0].getTime())
+    });
+
 }
 function initURLsPercent(ec) {
     var URLsPercentChart = ec.init(document.getElementById('URLsPercent'));
@@ -76,7 +81,6 @@ function initURLsPercent(ec) {
         var title = urlsFreq[i][0];
         title = title.length > 20 ? title.substring(0, 20) : title
         top20Titles.push(title);
-        console.log(title);
         top20Urls.push({value: urlsFreq[i][1], name: title});
     }
     URLsPercentChart.setOption({

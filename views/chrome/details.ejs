@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link type="text/css" rel="stylesheet" href="/css/index.css"/>
+    <title><%= title %> 浏览记录</title>
+</head>
+
+<body>
+    
+    <table>
+        <caption><%= title %> 浏览记录</caption>
+        <tr>
+            <th></th>
+            <th>时间</th>
+            <th>网站</th>
+        </tr>
+        <%
+            visitDetails = JSON.parse(visitDetails);
+            for(var i=0; i<visitDetails.length; i++) {
+        %>        
+            <tr>
+                <td><%=(i+1)%></td>
+                <td><%=visitDetails[i][0]%></td>
+                <td><a href="<%=visitDetails[i][1]%>"><%=visitDetails[i][2]%></a></td>
+            </tr>
+        <%
+            }
+        %>
+    </table>
+</body>
+</html>

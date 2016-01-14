@@ -18,11 +18,11 @@
 
 ### 0. 安装 [Node.js](https://nodejs.org/)
 
-由于本库使用了[template strings](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/template_strings)，所以需要`v4.0.0`以及之上的版本。
+由于本库使用了 ES6 中的 [template strings](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/template_strings) 语法，所以需要安装`v4.0.0`以及之上的版本。
 
 ### 1. 下载本库，并安装依赖
 ```
-git clone https://github.com/jiacai2050/chrome-history-stat.git
+git clone https://github.com/jiacai2050/chrome-history-stat.git && cd chrome-history-stat
 npm install
 ```
 ### 2. 修改配置文件`config.json`
@@ -41,8 +41,8 @@ npm install
     }
 }
 ```
-- `chrome_history_file` 指明 Chrome 保存在本地的历史浏览文件。
-- `count_range` 指明统计的时间范围
+- `chrome_history_file`：Chrome 保存在本地的历史浏览文件
+- `count_range`：统计的时间范围
 
 在 Chrome 打开的情况下，如果直接从默认位置读取`History`文件，会报下面的错误：
 ```
