@@ -85,32 +85,6 @@ Listening on port 5210 ...
 ![chrome_history_percent](screenshots/percent.png)
 ![chrome_history_table](screenshots/table.png)
 
-### 3.1 启动服务时出现的一些问题及解决方法
-
-### 3.1.1 以下是将node从0.12版升级到最新版后，启动时遇到的一些问题和解决方法
-
-如1，在确保将node升级到4.0.0版本以上，并安装所需依赖后，启动时若遇到以下提示错误信息：
-
-`Cannot find module '/chrome-history-stat/node_modules/sqlite3/lib/binding/node-v47-darwin-x64/node_sqlite3.node'`
-
-定位到问题：在将`node`从`0.12`通过
-
-`npm install -g n`
-
-`n stable`
-
-升级到node.js最新稳定版时，经检查`npm`和`node-gyp`的版本并没有升级，于是执行
-
-`sudo npm install npm -g`
-
-npm版本从`2.14.2`升级到`3.5.3`
-
-`sudo npm install node-gyp -g`
-
-node-gyp版本从`0.6.14`升级到`3.2.1`
-
-重新启动服务成功
-
 ### 4. 数据导出
 当然，除了在线浏览，还可以把数据导出为 CSV 文件。直接在命令行执行下面的命令：
 ```
