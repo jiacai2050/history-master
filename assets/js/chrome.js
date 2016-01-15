@@ -7,6 +7,7 @@ function initDailyVisits(ec) {
     //--- 折柱 ---
     var dailyVisitsChart = ec.init(document.getElementById('dailyVisits'));
     dailyVisitsChart.setOption({
+        color: ['#23B7E5'],
         title : {
             text : '2015 年 Chrome 历史浏览量',
             subtext : '^_^'
@@ -49,11 +50,13 @@ function initDailyVisits(ec) {
         ],
         yAxis : [
             {
+                name: '访问量',
                 type : 'value'
             }
         ],
         series : [
             {
+                name: '访问量',
                 type: 'line',
                 showAllSymbol: true,
                 symbolSize: function (value){
