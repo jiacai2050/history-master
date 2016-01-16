@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <link type="text/css" rel="stylesheet" href="/css/index.css"/>
-    <title>2015 年 Chrome 浏览量统计</title>
+    <title>2015 年 <%= browser %> 浏览量统计</title>
 </head>
 
 <body>
@@ -15,7 +15,7 @@
     <script type="text/javascript">
     var dailyVisits = JSON.parse('<%-dailyVisits%>');
     var urlsFreq = JSON.parse('<%-urlsFreq%>');
-    
+    var browser = '<%= browser %>';
     require.config({
         paths: {
             echarts: '/js'
@@ -28,12 +28,12 @@
             'echarts/chart/pie',
             'echarts/chart/funnel'
         ],
-        initCharts
+        initCharts(browser)
     );
            
     </script>
     <table>
-        <caption>网站访问量 TOP 100</caption>
+        <caption> <%= browser %> 网站访问量 TOP 100</caption>
         <tr>
             <th></th>
             <th>网站标题</th>
@@ -45,7 +45,7 @@
         %>        
             <tr>
                 <td><%=(i+1)%></td>
-                <td><%=urlsFreq[i][0]%></td>
+                <td><%-urlsFreq[i][0]%></td>
                 <td><%=urlsFreq[i][1]%></td>
             </tr>
         <%

@@ -1,7 +1,7 @@
 {
   "name": "chrome_history_stat",
-  "version": "1.0.0",
-  "description": "统计 chrome 历史浏览记录",
+  "version": "2.0.0",
+  "description": "统计 chrome/firefox 历史浏览记录",
   "main": "app.js",
   "author": "liujiacai.net",
   "license": "MIT",

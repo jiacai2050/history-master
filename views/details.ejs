@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8">
     <link type="text/css" rel="stylesheet" href="/css/index.css"/>
-    <title><%= title %> 浏览记录</title>
+    <title><%= browser %> <%= currentDay %> 浏览记录</title>
 </head>
 
 <body>
     
     <table>
-        <caption><%= title %> 浏览记录</caption>
+        <caption><%= browser %> <%= currentDay %> 浏览记录</caption>
         <tr>
             <th></th>
             <th>时间</th>
@@ -22,7 +22,7 @@
             <tr>
                 <td><%=(i+1)%></td>
                 <td><%=visitDetails[i][0]%></td>
-                <td><a href="<%=visitDetails[i][1]%>"><%=visitDetails[i][2]%></a></td>
+                <td><a href="<%=visitDetails[i][1]%>"><%-visitDetails[i][2]%></a></td>
             </tr>
         <%
             }

@@ -1,15 +1,17 @@
-function initCharts(ec) {
-    initDailyVisits(ec);
-    initURLsPercent(ec);
+function initCharts(browser) {
+    return function(ec) {
+        initDailyVisits(ec, browser);
+        initURLsPercent(ec, browser);    
+    }
 }
-function initDailyVisits(ec) {
+function initDailyVisits(ec, browser) {
     var ecConfig = require('echarts/config');
     //--- 折柱 ---
     var dailyVisitsChart = ec.init(document.getElementById('dailyVisits'));
     dailyVisitsChart.setOption({
         color: ['#23B7E5'],
         title : {
-            text : '2015 年 Chrome 历史浏览量',
+            text : browser + ' 历史浏览量',
             subtext : '^_^'
         },
         tooltip : {
@@ -71,11 +73,11 @@ function initDailyVisits(ec) {
         ]
     });
     dailyVisitsChart.on(ecConfig.EVENT.CLICK, function(param) {
-        window.open("/chrome/details/" + param.data[0].getTime())
+        window.open("/" + browser.toLowerCase() + "/details/" + param.data[0].getTime())
     });
 
 }
-function initURLsPercent(ec) {
+function initURLsPercent(ec, browser) {
     var URLsPercentChart = ec.init(document.getElementById('URLsPercent'));
     var limit = urlsFreq.length < 20 ? urlsFreq.length : 10;
     var top20Urls = [];
@@ -88,7 +90,7 @@ function initURLsPercent(ec) {
     }
     URLsPercentChart.setOption({
         title : {
-            text: 'TOP 20 访问网址',
+            text: browser + ' TOP 20 访问网址',
             x:'center'
         },
         tooltip : {
