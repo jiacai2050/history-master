@@ -12,5 +12,5 @@ app.get("/", function(req, res) {
 });
 
 var server = app.listen(config.port, function() {
-    console.log('Listening on port %d ...', server.address().port);
+    console.log('Listening on port %d...', server.address().port);
 });

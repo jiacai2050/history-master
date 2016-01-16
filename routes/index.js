@@ -10,7 +10,7 @@ _.map(files, function(file) {
     if(/js$/.test(file) && ! /index/.test(file)) {
         var file = path.join(__dirname, file),
             router = "/" + path.basename(file, ".js");
-        console.log("add router: " + router);
+        //console.log("add router: " + router);
         app.use(router, require(file));
     }
 });

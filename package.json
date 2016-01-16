@@ -1,10 +1,16 @@
 {
   "name": "chrome_history_stat",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "统计 chrome/firefox 历史浏览记录",
-  "main": "app.js",
-  "author": "liujiacai.net",
+  "author": {
+    "name": "Jiacai Liu",
+    "email": "jiacai2050@gmail.con",
+    "url": "http://liujiacai.net"
+  },
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jiacai2050/chrome-history-stat/issues"
+  },
   "dependencies": {
     "ejs": "^2.3.4",
     "express": "^4.13.3",

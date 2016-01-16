@@ -98,17 +98,18 @@ Firefox 历史浏览文件保存在`places.sqlite`文件中，该文件在各大
 
 修改完`config.json`后，就可以运行我们的服务了：
 ```
-$ node app
+node app
 
 # 看到下面的输出，说明服务已经启动了
-add router: /chrome
-add router: /firefox
+init chrome db successfully... visit http://localhost:5210/chrome
+init firefox db successfully... visit http://localhost:5210/firefox
 Listening on port 5210 ...
 ```
-服务成功启动后，就可以打开浏览器访问了：
+如果`config.json`中没有正确配置 Chrome/Firefox 历史浏览文件，会有相应的提示，比如：
+```
+chrome_history_file isn't set properly
+```
 
-- `http://localhost:5210/chrome`
-- `http://localhost:5210/firefox`
 
 ### 4. 数据导出
 当然，除了在线浏览，还可以把数据导出为 CSV 文件。直接在命令行执行下面的命令：
