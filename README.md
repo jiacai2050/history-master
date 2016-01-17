@@ -7,8 +7,8 @@
 ## 功能
 
 1. 使用 [ECharts](https://github.com/ecomfe/echarts) + [Express](http://expressjs.com/) 提供基于 canvas 的图表展示
-![chrome_history_trend](screenshots/trend.png)
-![chrome_history_percent](screenshots/percent.png)
+![chrome_history_trend](screenshots/line.png)
+![chrome_history_percent](screenshots/pie.png)
 2. 导出统计数据到 csv 文件
 3. ...
 
@@ -39,7 +39,7 @@ Chrome 数据库初始化成功... 请访问 http://localhost:5210/chrome
 Firefox 数据库初始化成功... 请访问 http://localhost:5210/firefox
 ```
 
-服务启动时，会根据当前操作系统的不同，在 Chrome/Firefox [默认配置文件夹](https://github.com/jiacai2050/ideas/issues/10)中查找历史浏览文件，找到后会将其拷贝的用户家目录，然后再初始化相应数据库。
+服务启动时，会根据当前操作系统的不同，在 Chrome/Firefox [默认配置文件夹](https://github.com/jiacai2050/ideas/issues/10)中查找历史浏览文件，找到后会将其拷贝到用户家目录，然后再初始化相应数据库。
 
 如果在默认位置找不到或者用户想要显式指定历史浏览文件，可修改`config.json`中相应的参数：
 

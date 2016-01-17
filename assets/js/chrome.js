@@ -12,7 +12,7 @@ function initDailyVisits(ec, browser) {
         color: ['#23B7E5'],
         title : {
             text : browser + ' 历史浏览量',
-            subtext : '^_^'
+            subtext : '点击当天统计总数可查看当天访问详情'
         },
         tooltip : {
             trigger: 'item',
