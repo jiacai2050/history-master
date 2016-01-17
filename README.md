@@ -26,98 +26,43 @@
 git clone https://github.com/jiacai2050/chrome-history-stat.git && cd chrome-history-stat
 npm install
 ```
-### 2. 修改配置文件`config.json`
-`config.json`默认为我在自己的 Mac 上使用的配置，你需要根据自己的情况进行修改：
-```
-{
-    "port": 5210,
-    "chrome_history_file": "/Users/liujiacai/Desktop/History",
-    "firefox_history_file": "/Users/liujiacai/Desktop/places.sqlite",
-    "export_dir" : "/Users/liujiacai/Desktop/",
-    "count_range": {
-        "start": "2015/01/01",
-        "end": "2016/01/01"
-    }
-}
-```
+### 2. 启动服务
 
-- `chrome_history_file`：Chrome 保存在本地的历史浏览文件
-- `firefox_history_file`：Firefox 保存在本地的历史浏览文件
-- `count_range`：统计的时间范围
-
-#### Chrome 历史浏览文件 
-
-Chrome 历史浏览文件保存在`History`文件中，该文件在各大操作系统位置大致如下（参考[这里](http://www.forensicswiki.org/wiki/Google_Chrome)）：
-
-- Linux
-
-    `/home/$USER/.config/google-chrome/Default/History`
-
-- Mac
-
-    `/Users/$USER/Library/Application Support/Google/Chrome/Default/History`
-
-- Windows XP
-
-    `C:\Documents and Settings\%USERNAME%\Local Settings\Application Data\Google\Chrome\User Data\Default\History`
-    
-- Windows Vista 以及之后的版本
-
-    `C:\Users\%USERNAME%\AppData\Local\Google\Chrome\User Data\Default\History`
-
-在 Chrome 打开的情况下，如果直接从默认位置读取`History`文件，会报下面的错误：
-```
-{ [Error: SQLITE_BUSY: database is locked] errno: 5, code: 'SQLITE_BUSY' }
-```
-所以我这里把`History`文件拷贝到了桌面上。为了避免上面的错误，大家最好也把`History`文件从默认位置拷贝到桌面上再使用。
-
-
-#### Firefox 历史浏览文件
-
-Firefox 历史浏览文件保存在`places.sqlite`文件中，该文件在各大操作系统位置大致如下（参考[这里](http://kb.mozillazine.org/Profile_folder_-_Firefox)）：
-
-- Linux
-
-    `/home/$USER/.mozilla/firefox/<profile folder>/places.sqlite`
-
-- Mac
-
-    `/Users/$USER/Library/Application Support/Firefox/Profiles/<profile folder>/places.sqlite`
-
-- Windows XP
-
-    `C:\Documents and Settings\%USERNAME%\Application Data\Mozilla\Firefox\Profiles\<profile folder>\places.sqlite`
-
-- Windows Vista 以及之后的版本
-
-    `C:\Users\%USERNAME%\AppData\Roaming\Mozilla\Firefox\Profiles\<profile folder>\places.sqlite`
-
-为了避免与 Chrome 类似的错误，我这里也把`places.sqlite`文件拷贝到了桌面上。
-
-### 3. 启动服务
-
-修改完`config.json`后，就可以运行我们的服务了：
 ```
 node app
 
 # 看到下面的输出，说明服务已经启动了
-init chrome db successfully... visit http://localhost:5210/chrome
-init firefox db successfully... visit http://localhost:5210/firefox
-Listening on port 5210 ...
-```
-如果`config.json`中没有正确配置 Chrome/Firefox 历史浏览文件，会有相应的提示，比如：
-```
-chrome_history_file isn't set properly
+
+找到 Chrome 历史浏览文件：/Users/liujiacai/Library/Application Support/Google/Chrome/Default/History
+找到 Firefox 历史浏览文件：/Users/liujiacai/Library/Application Support/Firefox/Profiles/w6gn3vr4.default/places.sqlite
+Chrome 数据库初始化成功... 请访问 http://localhost:5210/chrome
+Firefox 数据库初始化成功... 请访问 http://localhost:5210/firefox
 ```
 
+服务启动时，会根据当前操作系统的不同，在 Chrome/Firefox [默认配置文件夹](https://github.com/jiacai2050/ideas/issues/10)中查找历史浏览文件，找到后会将其拷贝的用户家目录，然后再初始化相应数据库。
 
-### 4. 数据导出
+如果在默认位置找不到或者用户想要显式指定历史浏览文件，可修改`config.json`中相应的参数：
+
+- `chrome_history_file`：Chrome 保存在本地的历史浏览文件
+- `firefox_history_file`：Firefox 保存在本地的历史浏览文件
+
+在浏览器打开的情况下，不要直接从默认位置读取历史浏览文件，否则会报下面的错：
+```
+{ [Error: SQLITE_BUSY: database is locked] errno: 5, code: 'SQLITE_BUSY' }
+```
+
+### 3. 数据导出
+
 当然，除了在线浏览，还可以把数据导出为 CSV 文件。直接在命令行执行下面的命令：
 ```
 ./lib/export.js help    # 查看使用说明
 ./lib/export.js chrome  # 导出 Chrome 浏览记录到 csv 文件
 ./lib/export.js firefox # 导出 Firefox 浏览记录到 csv 文件
 ```
+
+导出的默认位置为用户家目录，如果用户想要更换导出位置，可修改`config.json`中相应的参数：
+
+- `export_dir`：指定文件导出文件夹
 
 导出到 CSV 文件后，就可以使用各种表格工具（如：Numbers、Excel）进行可视化了。在这个 DT 时代，别告诉我你不会用这些工具。
 

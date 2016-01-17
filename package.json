@@ -1,6 +1,6 @@
 {
   "name": "chrome_history_stat",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "统计 chrome/firefox 历史浏览记录",
   "author": {
     "name": "Jiacai Liu",
@@ -12,8 +12,11 @@
     "url": "https://github.com/jiacai2050/chrome-history-stat/issues"
   },
   "dependencies": {
+    "colors": "^1.1.2",
     "ejs": "^2.3.4",
     "express": "^4.13.3",
+    "fs-extra": "^0.26.4",
+    "glob": "^6.0.4",
     "moment": "^2.11.1",
     "sqlite3": "^3.1.1",
     "underscore": "^1.8.3"
