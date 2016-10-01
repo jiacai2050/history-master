@@ -2,14 +2,12 @@
 
 > Get a better sense of browsing history via Chrome/Firefox
 
-[中文文档](./README-zh.md)
-
 ## Feature
 
-- ![](./screenshots/line_chart.png)
-- ![](./screenshots/pie_chart.png)
-- ![](./screenshots/tunnel_chart.png)
-- ![](./screenshots/daterange.png)
+- ![](https://raw.githubusercontent.com/jiacai2050/better-history/master/screenshots/line_chart.png)
+- ![](https://raw.githubusercontent.com/jiacai2050/better-history/master/screenshots/pie_chart.png)
+- ![](https://raw.githubusercontent.com/jiacai2050/better-history/master/screenshots/tunnel_chart.png)
+- ![](https://raw.githubusercontent.com/jiacai2050/better-history/master/screenshots/daterange.png)
 
 
 ## Usage

@@ -2,6 +2,18 @@
   "name": "better-history",
   "version": "1.0.0",
   "description": "Get a better sense of browsing history via Chrome/Firefox",
+  "homepage": "https://github.com/jiacai2050/better-history",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jiacai2050/better-history"
+  },
+  "keyword": [
+      "Firefox",
+      "Chrome",
+      "Browser",
+      "History",
+      "better-history"
+  ],
   "bin": {
     "better-history": "./bin/index.js",
     "better-history-webserver": "./bin/webserver.js",
