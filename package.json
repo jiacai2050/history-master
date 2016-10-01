@@ -1,7 +1,12 @@
 {
-  "name": "chrome_history_stat",
-  "version": "2.1.0",
-  "description": "统计 chrome/firefox 历史浏览记录",
+  "name": "better-history",
+  "version": "1.0.0",
+  "description": "Get a better sense of browsing history via Chrome/Firefox",
+  "bin": {
+    "better-history": "./bin/index.js",
+    "better-history-webserver": "./bin/webserver.js",
+    "better-history-export": "./bin/export.js"
+  },
   "author": {
     "name": "Jiacai Liu",
     "email": "jiacai2050@gmail.con",
@@ -13,10 +18,12 @@
   },
   "dependencies": {
     "colors": "^1.1.2",
+    "commander": "^2.9.0",
     "ejs": "^2.3.4",
     "express": "^4.13.3",
     "fs-extra": "^0.26.4",
     "glob": "^6.0.4",
+    "is-there": "^4.3.3",
     "moment": "^2.11.1",
     "sqlite3": "^3.1.1",
     "underscore": "^1.8.3"

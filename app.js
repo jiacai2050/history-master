@@ -1,16 +1,24 @@
-var express = require('express');
-var path = require('path');
+var express = require("express");
+var path = require("path");
+var util = require("./lib/util");
+var db = require("./lib/db");
 
-var app = express();
-var config = require('./config');
 
-app.set('view engine', 'ejs');
-app.use(express.static(path.join(__dirname, 'assets')));
-app.use(require('./routes'));
-app.get("/", function(req, res) {
-    res.redirect("/chrome");
-});
+exports.start_server = function(firefox_history, chrome_history, port) {
+    var app = express();
 
-var server = app.listen(config.port, function() {
-    console.log('Listening on port %d...', server.address().port);
-});
+    app.use(express.static("./assets"));
+    app.set("view engine", "ejs");
+    app.set('views', path.join(__dirname, 'views'));
+
+    app.use(require("./routes"));
+    app.get("/", function(req, res) {
+        res.redirect("/chrome");
+    });
+
+    util.initConf();
+    db.initDB(firefox_history, chrome_history);
+    app.listen(port, function() {
+        console.log("Listening on port %d...", port);
+    });
+}

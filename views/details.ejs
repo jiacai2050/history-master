@@ -2,31 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <link type="text/css" rel="stylesheet" href="/css/index.css"/>
-    <title><%= browser %> <%= currentDay %> 浏览记录</title>
+    <link rel="icon" href="/img/history.ico">
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <title>Detailed Browsing History via <%= browser %> on <%= currentDay %></title>
 </head>
 
 <body>
-    
-    <table>
-        <caption><%= browser %> <%= currentDay %> 浏览记录</caption>
-        <tr>
-            <th></th>
-            <th>时间</th>
-            <th>网站</th>
-        </tr>
-        <%
-            visitDetails = JSON.parse(visitDetails);
-            for(var i=0; i<visitDetails.length; i++) {
-        %>        
-            <tr>
-                <td><%=(i+1)%></td>
-                <td><%=visitDetails[i][0]%></td>
-                <td><a href="<%=visitDetails[i][1]%>"><%-visitDetails[i][2]%></a></td>
-            </tr>
-        <%
-            }
-        %>
-    </table>
+    <div class="container">
+        <div class="row table-responsive">
+            <h3 style="margin: 0 0 20px 0">Detailed Browsing History via <%= browser %> on <%= currentDay %> </h3>
+
+            <table class="table table-striped">
+                <tr>
+                    <th></th>
+                    <th>Datetime</th>
+                    <th>Title</th>
+                </tr>
+                <%
+                    visitDetails = JSON.parse(visitDetails);
+                    for(var i=0; i<visitDetails.length; i++) {
+                %>
+                    <tr>
+                        <td><%=(i+1)%></td>
+                        <td><%=visitDetails[i][0]%></td>
+                        <td><a href="<%=visitDetails[i][1]%>"><%-visitDetails[i][2]%></a></td>
+                    </tr>
+                <%
+                    }
+                %>
+            </table>
+        </div>
+    </div>
 </body>
 </html>

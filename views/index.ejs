@@ -2,56 +2,127 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <link type="text/css" rel="stylesheet" href="/css/index.css"/>
-    <title>2015 年 <%= browser %> 浏览量统计</title>
+    <link rel="icon" href="/img/history.ico">
+    <title> <%= browser %> History Overview</title>
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="/css/daterangepicker.css"/>
+    <link type="text/css" rel="stylesheet" href="/css/nav.css"/>
+    <script src="/js/jquery-1.11.3.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/moment.min.js"></script>
+    <script src="/js/daterangepicker.js"></script>
+    <script src="/js/echarts.js"></script>
+    <script src="/js/underscore-min.js"></script>
+    <script src="/js/main.js"></script>
+    <script type="text/javascript">
+        var dailyVisits = JSON.parse('<%-dailyVisits%>');
+        var urlsFreq = JSON.parse('<%-urlsFreq%>');
+        var browser = '<%= browser %>';
+        require.config({
+            paths: {
+                echarts: '/js'
+            }
+        });
+        require(
+            [
+                'echarts',
+                'echarts/chart/line',
+                'echarts/chart/pie',
+                'echarts/chart/bar',
+                'echarts/chart/funnel'
+            ],
+            initCharts(browser)
+        );
+        $(function() {
+            $("#sel_browser").val('<%= browser %>').on("change", function() {
+                window.location = `/${this.value}${window.location.search}`;
+            });
+
+
+            var show_format = "YYYY/MM/DD";
+            var start = moment('<%= start%>', show_format);
+            var end = moment('<%= end%>', show_format);
+
+            function choose_daterange_cb(start, end, chosen_label) {
+
+                start = start.format(show_format);
+                end = end.format(show_format);
+                if (chosen_label == "first_init") {
+                    $('#browse_range span').html(`${start} - ${end}`);
+                } else {
+                    window.location = `${window.location.pathname}?start=${start}&end=${end}`;
+                }
+            }
+
+            $('#browse_range').daterangepicker({
+                startDate: start,
+                endDate: end,
+                format: show_format,
+                ranges: {
+                   'Yesterday': [moment().subtract(1, 'days'), moment()],
+                   'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                   'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                   'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                }
+            }, choose_daterange_cb);
+
+            choose_daterange_cb(start, end, "first_init");
+
+        });
+    </script>
 </head>
 
 <body>
-    <div id="dailyVisits" style="height:500px;border:1px solid #ccc;padding:10px;"></div>
-    <div id="URLsPercent" style="height:500px;border:1px solid #ccc;padding:10px;"></div>
-    <script src="/js/echarts.js"></script>
-    <script src="/js/underscore-min.js"></script>
-    <script src="/js/chrome.js"></script>
-    <script type="text/javascript">
-    var dailyVisits = JSON.parse('<%-dailyVisits%>');
-    var urlsFreq = JSON.parse('<%-urlsFreq%>');
-    var browser = '<%= browser %>';
-    require.config({
-        paths: {
-            echarts: '/js'
-        }
-    });
-    require(
-        [
-            'echarts',
-            'echarts/chart/line',
-            'echarts/chart/pie',
-            'echarts/chart/bar',
-            'echarts/chart/funnel'
-        ],
-        initCharts(browser)
-    );
-           
-    </script>
-    <table>
-        <caption> <%= browser %> 网站访问量 TOP 100</caption>
-        <tr>
-            <th></th>
-            <th>网站标题</th>
-            <th>访问量</th>
-        </tr>
-        <%
-            urlsFreq = JSON.parse(urlsFreq);
-            for(var i=0; i<urlsFreq.length; i++) {
-        %>        
-            <tr>
-                <td><%=(i+1)%></td>
-                <td><%-urlsFreq[i][0]%></td>
-                <td><%=urlsFreq[i][1]%></td>
-            </tr>
-        <%
-            }
-        %>
-    </table>
+    <nav class="navbar navbar-inverse navbar-static-top">
+        <div class="container">
+            <ul class="nav navbar-nav">
+                <li>
+                    <select class="form-control" id="sel_browser">
+                        <option>Chrome</option>
+                        <option>Firefox</option>
+                    </select>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <div id="browse_range" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
+                        <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+                        <span></span> <b class="caret"></b>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div id="dailyVisits" style="height:500px;border:1px solid #ccc;padding:10px;"></div>
+        </div>
+        <div class="row">
+            <div id="URLsPercent" style="height:500px;border:1px solid #ccc;padding:10px;"></div>
+        </div>
+        <div class="row table-responsive">
+
+            <h3 style="margin: 0 0 20px 0">Visits Rank TOP 100</h3>
+            <table class="table table-striped">
+                <tr>
+                    <th>Rank</th>
+                    <th>Times</th>
+                    <th>Title</th>
+                </tr>
+                <%
+                    urlsFreq = JSON.parse(urlsFreq);
+                    for(var i=0; i<urlsFreq.length; i++) {
+                %>
+                    <tr>
+                        <td><%=(i+1)%></td>
+                        <td><%=urlsFreq[i][1]%></td>
+                        <td><%-urlsFreq[i][0]%></td>
+                    </tr>
+                <%
+                    }
+                %>
+            </table>
+        </div>
+    </div>
 </body>
 </html>
