@@ -1,4 +1,4 @@
-## better-history
+## better-history   [![Version](https://img.shields.io/npm/v/better-history.svg)](https://www.npmjs.com/package/better-history) [![Download](https://img.shields.io/npm/dm/better-history.svg)](https://www.npmjs.com/package/better-history) [![Forks](https://img.shields.io/github/forks/jiacai2050/better-history.svg)](https://github.com/jiacai2050/better-history) [![Stars](https://img.shields.io/github/stars/jiacai2050/better-history.svg)](https://github.com/jiacai2050/better-history) [![License](https://img.shields.io/npm/l/better-history.svg)](https://www.npmjs.com/package/better-history) 
 
 [![NPM](https://nodei.co/npm/better-history.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/better-history/)
 
