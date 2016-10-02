@@ -1,8 +1,12 @@
-## better_history
+## better-history
 
 [![NPM](https://nodei.co/npm/better-history.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/better-history/)
 
 > 💡 Get a better sense of browsing history via Chrome/Firefox 💡
+
+Nowadays everyone surfs the Internet a lot, but I don't think everyone have a clear sense of their browsing habits.
+
+`better-history` comes to the rescue. Chrome and Firefox are supported. Hope you enjoy. 💗
 
 ## Feature
 
@@ -33,15 +37,17 @@ npm install better-history -g
 
 Then, you have two choices, either start a local server (preferred) to view or export statistics to csv documents.
 
-1. Start a local server, then visit http://localhost:4455.
+- Start a local server, then visit http://localhost:4455.
 ```
 better-history
 ```
-2. Export statistics to csv documents, default export directory is your `$HOME`.
+
+- Export statistics to csv documents, default export directory is your `$HOME`.
 ```
 better-history export
-```        
-3. In case of customization, run `better-history [server | export] -h` to set specific options regarding different subcommand.
+```
+
+- In case of customization, run `better-history [server | export] -h` to set specific options regarding different subcommand.
 
 ## License
 

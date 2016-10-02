@@ -1,4 +1,4 @@
-## better_history
+## better-history
 
 [![NPM](https://nodei.co/npm/better-history.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/better-history/)
 
