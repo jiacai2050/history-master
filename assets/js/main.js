@@ -91,7 +91,7 @@ function initURLsPercent(ec, browser) {
     }
     URLsPercentChart.setOption({
         title : {
-            text: 'Percentage of TOP 10 Website',
+            text: 'Percentage of TOP 10 frequently visited sites',
             x:'center'
         },
         tooltip : {
@@ -127,7 +127,7 @@ function initURLsPercent(ec, browser) {
         calculable : true,
         series : [
             {
-                name:'Website: ',
+                name:'Title: ',
                 type:'pie',
                 radius : '75%',
                 center: ['50%', '60%'],

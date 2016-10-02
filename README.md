@@ -1,39 +1,51 @@
 ## better_history
 
-> Get a better sense of browsing history via Chrome/Firefox
+> 💡 Get a better sense of browsing history via Chrome/Firefox 💡
+
+[![NPM](https://nodei.co/npm/better-history.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/better-history/)
 
 ## Feature
 
-- ![](https://raw.githubusercontent.com/jiacai2050/better-history/master/screenshots/line_chart.png)
-- ![](https://raw.githubusercontent.com/jiacai2050/better-history/master/screenshots/pie_chart.png)
-- ![](https://raw.githubusercontent.com/jiacai2050/better-history/master/screenshots/tunnel_chart.png)
-- ![](https://raw.githubusercontent.com/jiacai2050/better-history/master/screenshots/daterange.png)
+- Daily Page View Trending
+
+![](https://raw.githubusercontent.com/jiacai2050/better-history/master/screenshots/line_chart.png)
+
+- Percentage of TOP 10 frequently visited site
+
+![](https://raw.githubusercontent.com/jiacai2050/better-history/master/screenshots/pie_chart.png)
+
+- Frequently visited site in tunnel chart
+
+![](https://raw.githubusercontent.com/jiacai2050/better-history/master/screenshots/tunnel_chart.png)
+
+- customize browsing range
+
+![](https://raw.githubusercontent.com/jiacai2050/better-history/master/screenshots/daterange.png)
 
 
 ## Usage
 
+First of all,
 
 ```        
 npm install better-history -g
 ```
 
-- Start a local Webserver
+Then, you have two choices, either start a local server (preferred) to view or export statistics to csv documents.
+
+1. Start a local server, then visit http://localhost:4455.
 
 ```
 better-history
 ```
 
-- Export statistics to csv documents
+2. Export statistics to csv documents, default export directory is your `$HOME`.
 
 ```
 better-history export
 ```        
 
-- You can run `--help` to set more options.
-
-```
-better-history -h
-```
+3. In case of customization, run `better-history [server | export] -h` to set specific options regarding different subcommand.
 
 ## License
 

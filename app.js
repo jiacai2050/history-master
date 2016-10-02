@@ -22,3 +22,7 @@ exports.start_server = function(firefox_history, chrome_history, port) {
         console.log("Listening on port %d...", port);
     });
 }
+
+if (require.main === module) {  // called directly
+    exports.start_server(null, null, 4455);
+}

@@ -1,8 +1,10 @@
 ## better_history
 
-> Get a better sense of browsing history via Chrome/Firefox
+> 💡 Get a better sense of browsing history via Chrome/Firefox 💡
 
 [英文文档](./README.md)
+
+[![NPM](https://nodei.co/npm/better-history.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/better-history/)
 
 ## 特点
 
@@ -18,7 +20,7 @@
 npm install better-history -g
 ```
 
-- 开启本地Server
+- 开启本地 Server，然后访问 http://localhost:4455
 
 ```
 better-history
@@ -30,17 +32,13 @@ better-history
 better-history export
 ```        
 
-- 使用 `--help` 查看更多选项
-
-```
-better-history -h
-```
+- 运行`better-history [server | export] -h` 来设置不同子命令的参数。
 
 ## TODO
 
 - [x] 提供对 Firefox 的分析。（2016-01-16 完成）
 - [x] 提供`搜索关键字`相关信息的展示。个人觉得没什么价值，所以不做了。
-- [x] 发布到 [npm](https://www.npmjs.com/package/better-history)
+- [x] 发布到 [npm](https://www.npmjs.com/package/better-history) （2016-10-02 完成）
 - [ ] 提供更丰富的图表展示📈
 
 

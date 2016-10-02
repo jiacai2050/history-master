@@ -1,22 +1,22 @@
 {
   "name": "better-history",
-  "version": "1.0.0",
-  "description": "Get a better sense of browsing history via Chrome/Firefox",
+  "version": "1.0.2",
+  "description": "💡 Get a better sense of browsing history via Chrome/Firefox",
   "homepage": "https://github.com/jiacai2050/better-history",
   "repository": {
     "type": "git",
     "url": "https://github.com/jiacai2050/better-history"
   },
   "keyword": [
-      "Firefox",
-      "Chrome",
-      "Browser",
-      "History",
-      "better-history"
+    "Firefox",
+    "Chrome",
+    "Browser",
+    "History",
+    "better-history"
   ],
   "bin": {
     "better-history": "./bin/index.js",
-    "better-history-webserver": "./bin/webserver.js",
+    "better-history-server": "./bin/server.js",
     "better-history-export": "./bin/export.js"
   },
   "author": {
@@ -27,6 +27,12 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/jiacai2050/chrome-history-stat/issues"
+  },
+  "engines": {
+    "node": ">=4.2.4"
+  },
+  "scripts": {
+    "test": "mocha --reporter spec"
   },
   "dependencies": {
     "colors": "^1.1.2",
@@ -39,5 +45,9 @@
     "moment": "^2.11.1",
     "sqlite3": "^3.1.1",
     "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.1.0"
   }
 }
