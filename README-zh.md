@@ -1,10 +1,10 @@
 ## better_history
 
+[![NPM](https://nodei.co/npm/better-history.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/better-history/)
+
 > 💡 Get a better sense of browsing history via Chrome/Firefox 💡
 
 [英文文档](./README.md)
-
-[![NPM](https://nodei.co/npm/better-history.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/better-history/)
 
 ## 特点
 
