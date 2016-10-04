@@ -1,4 +1,4 @@
-## better-history   [![NPM](https://img.shields.io/npm/v/better-history.svg)](https://www.npmjs.com/package/better-history) [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/mkfgjjeggnmkbobjmelbjhdchcoadnin.svg)](https://chrome.google.com/webstore/detail/advanced-history/mkfgjjeggnmkbobjmelbjhdchcoadnin) [![Stars](https://img.shields.io/github/stars/jiacai2050/better-history.svg)](https://github.com/jiacai2050/better-history)
+## better-history   [![NPM](https://img.shields.io/npm/v/better-history.svg)](https://www.npmjs.com/package/better-history) [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/mkfgjjeggnmkbobjmelbjhdchcoadnin.svg)](https://chrome.google.com/webstore/detail/advanced-history/mkfgjjeggnmkbobjmelbjhdchcoadnin) [![Stars](https://img.shields.io/github/stars/jiacai2050/better-history.svg)](https://github.com/jiacai2050/better-history/stargazers)
 
 > 💡 Get a better sense of browsing history via Chrome/Firefox 💡
 
@@ -12,8 +12,8 @@ Nowadays everyone surfs the Internet a lot, but I don't think everyone have a cl
 
 ## Development
 
-- [master](/tree/master) branch used for Node.js
-- [extensions](/tree/extensions) branch used for Firefox/Chrome extensions, thanks to [WebExtensions](https://developer.mozilla.org/Add-ons/WebExtensions) -- Write once, Run All browsers.
+- [master](https://github.com/jiacai2050/better-history/tree/master) branch used for Node.js
+- [extensions](https://github.com/jiacai2050/better-history/tree/extensions) branch used for Firefox/Chrome extensions, thanks to [WebExtensions](https://developer.mozilla.org/Add-ons/WebExtensions) -- Write once, Run All browsers.
 
 ## License
 
