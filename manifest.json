@@ -1,6 +1,6 @@
 {
-    "name": "Advanced history",
-    "version": "1.2",
+    "name": "Advanced History",
+    "version": "1.3",
     "description": "Get a better sense of browsing history",
     "homepage_url": "https://github.com/jiacai2050/better-history",
     "browser_action": {
@@ -11,7 +11,7 @@
             "64": "assets/img/64.png",
             "128": "assets/img/128.png"
         },
-        "default_title": "Better History"
+        "default_title": "Advanced History"
     },
     "icons": {
         "16": "assets/img/16.png",
