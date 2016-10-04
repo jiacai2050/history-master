@@ -1,0 +1,30 @@
+{
+    "name": "Advanced history",
+    "version": "1.2",
+    "description": "Get a better sense of browsing history",
+    "homepage_url": "https://github.com/jiacai2050/better-history",
+    "browser_action": {
+        "browser_style": true,
+        "default_icon": {
+            "16": "assets/img/16.png",
+            "32": "assets/img/32.png",
+            "64": "assets/img/64.png",
+            "128": "assets/img/128.png"
+        },
+        "default_title": "Better History"
+    },
+    "icons": {
+        "16": "assets/img/16.png",
+        "32": "assets/img/32.png",
+        "64": "assets/img/64.png",
+        "128": "assets/img/128.png"
+    },
+    "background": {
+        "scripts": ["background.js"]
+    },
+    "permissions": [
+        "history",
+        "tabs"
+    ],
+    "manifest_version": 2
+}
