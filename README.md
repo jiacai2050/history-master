@@ -1,12 +1,15 @@
-## better-history   [![Version](https://img.shields.io/npm/v/better-history.svg)](https://www.npmjs.com/package/better-history) [![Download](https://img.shields.io/npm/dm/better-history.svg)](https://www.npmjs.com/package/better-history) [![Forks](https://img.shields.io/github/forks/jiacai2050/better-history.svg)](https://github.com/jiacai2050/better-history) [![Stars](https://img.shields.io/github/stars/jiacai2050/better-history.svg)](https://github.com/jiacai2050/better-history) [![License](https://img.shields.io/npm/l/better-history.svg)](https://www.npmjs.com/package/better-history) 
-
-[![NPM](https://nodei.co/npm/better-history.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/better-history/)
+## better-history   [![NPM](https://img.shields.io/npm/v/better-history.svg)](https://www.npmjs.com/package/better-history) [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/mkfgjjeggnmkbobjmelbjhdchcoadnin.svg)](https://chrome.google.com/webstore/detail/advanced-history/mkfgjjeggnmkbobjmelbjhdchcoadnin) [![Stars](https://img.shields.io/github/stars/jiacai2050/better-history.svg)](https://github.com/jiacai2050/better-history/stargazers)
 
 > 💡 Get a better sense of browsing history via Chrome/Firefox 💡
 
 Nowadays everyone surfs the Internet a lot, but I don't think everyone have a clear sense of their browsing habits.
 
 `better-history` comes to the rescue. Chrome and Firefox are supported. Hope you enjoy. 💗
+
+- [Chrome Web Store](https://chrome.google.com/webstore/detail/advanced-history/mkfgjjeggnmkbobjmelbjhdchcoadnin)
+- [Mozilla Add-ons](https://addons.mozilla.org/firefox/addon/advanced-history/)
+
+> NOTE: There is already a [better history](https://chrome.google.com/webstore/detail/better-history/obciceimmggglbmelaidpjlmodcebijb) in Chrome webstore, so I have named mine as `Advaned history` in both Mozilla add-ons and Chrome webstore.
 
 ## Feature
 
@@ -27,7 +30,7 @@ Nowadays everyone surfs the Internet a lot, but I don't think everyone have a cl
 ![](https://raw.githubusercontent.com/jiacai2050/better-history/master/screenshots/daterange.png)
 
 
-## Usage
+## Usage for NPM users
 
 First of all,
 
@@ -48,6 +51,12 @@ better-history export
 ```
 
 - In case of customization, run `better-history [server | export] -h` to set specific options regarding different subcommand.
+
+
+## Development
+
+- [master](https://github.com/jiacai2050/better-history/tree/master) branch used for Node.js
+- [extensions](https://github.com/jiacai2050/better-history/tree/extensions) branch used for Firefox/Chrome extensions, thanks to [WebExtensions](https://developer.mozilla.org/Add-ons/WebExtensions) -- Write once, Run All browsers.
 
 ## License
 

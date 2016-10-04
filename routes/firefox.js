@@ -25,27 +25,36 @@ function fetch_stats(start, end, cb) {
     });
 }
 router.get("/", function(req, res) {
-    if(req.query.hasOwnProperty("start") && req.query.hasOwnProperty("end")) {
-        var start = moment(req.query.start, date_format);
-        var end = moment(req.query.end, date_format);
-        start = util.toPRTimestamp(start.valueOf());
-        end = util.toPRTimestamp(end.valueOf());
+
+    firefox.getHistoryRange(function(range) {
+        var minDate = range.min_visit_time;
+        var maxDate = range.max_visit_time;
+
+        if(req.query.hasOwnProperty("start") && req.query.hasOwnProperty("end")) {
+            var start = moment(req.query.start, date_format).valueOf();
+            var end = moment(req.query.end, date_format).valueOf();
+        } else {
+            var end = moment().valueOf();
+            var start = moment().subtract(30, "days").valueOf();
+        }
+        start = util.toPRTimestamp(start);
+        end = util.toPRTimestamp(end);
+
+        if (start < minDate) {
+            start = minDate;
+        }
+        if (end > maxDate) {
+            end = maxDate;
+        }
         fetch_stats(start, end, function(stats) {
-            stats["start"] = req.query.start;
-            stats["end"] = req.query.end;
+            stats["start"] = moment(util.fromPRTimestamp(start)).format(date_format);
+            stats["end"] = moment(util.fromPRTimestamp(end)).format(date_format);
+            stats["minDate"] = moment(util.fromPRTimestamp(minDate)).valueOf();
+            stats["maxDate"] = moment(util.fromPRTimestamp(maxDate)).valueOf();
             res.render("index", stats);
-        })
-    } else {
-        firefox.getHistoryRange(function(range) {
-            var start = range.min_visit_time;
-            var end = range.max_visit_time;
-            fetch_stats(start, end, function(stats) {
-                stats["start"] = moment(util.fromPRTimestamp(start)).format(date_format);
-                stats["end"] = moment(util.fromPRTimestamp(end)).format(date_format);
-                res.render("index", stats);
-            });
         });
-    }
+    });
+
 });
 router.get("/details/:currentDay", function(req, res) {
     var currentDay = parseInt(req.params.currentDay);

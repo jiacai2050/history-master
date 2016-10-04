@@ -1,10 +1,13 @@
-function initCharts(browser) {
+var SHOW_FORMAT = "YYYY/MM/DD";
+
+function initCharts(browser, dailyVisits, urlsFreq) {
     return function(ec) {
-        initDailyVisits(ec, browser);
-        initURLsPercent(ec, browser);
+        initDailyVisits(ec, browser, dailyVisits);
+        initURLsPercent(ec, browser, urlsFreq);
     }
 }
-function initDailyVisits(ec, browser) {
+
+function initDailyVisits(ec, browser, dailyVisits) {
     var ecConfig = require('echarts/config');
     //--- Trend Chart ---
     var dailyVisitsChart = ec.init(document.getElementById('dailyVisits'));
@@ -78,7 +81,8 @@ function initDailyVisits(ec, browser) {
     });
 
 }
-function initURLsPercent(ec, browser) {
+
+function initURLsPercent(ec, browser, urlsFreq) {
     var URLsPercentChart = ec.init(document.getElementById('URLsPercent'));
     var topLimit = urlsFreq.length < 10 ? urlsFreq.length : 10;
     var top10Urls = [];
@@ -135,4 +139,33 @@ function initURLsPercent(ec, browser) {
             }
         ]
     });
+}
+
+function configChart(browser, dailyVisits, urlsFreq) {
+    require.config({
+        paths: {
+            echarts: '/js'
+        }
+    });
+    require(
+        [
+            'echarts',
+            'echarts/chart/line',
+            'echarts/chart/pie',
+            'echarts/chart/bar',
+            'echarts/chart/funnel'
+        ],
+        initCharts(browser, dailyVisits, urlsFreq)
+    );
+}
+
+function chooseDaterangeCB(start, end, chosenLabel) {
+
+    start = start.format(SHOW_FORMAT);
+    end = end.format(SHOW_FORMAT);
+    if (chosenLabel == "firstInit") {
+        $('#browse_range span').html(`${start} - ${end}`);
+    } else {
+        window.location = `${window.location.pathname}?start=${start}&end=${end}`;
+    }
 }

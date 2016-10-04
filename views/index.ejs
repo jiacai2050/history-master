@@ -15,58 +15,32 @@
     <script src="/js/underscore-min.js"></script>
     <script src="/js/main.js"></script>
     <script type="text/javascript">
-        var dailyVisits = JSON.parse('<%-dailyVisits%>');
-        var urlsFreq = JSON.parse('<%-urlsFreq%>');
-        var browser = '<%= browser %>';
-        require.config({
-            paths: {
-                echarts: '/js'
-            }
-        });
-        require(
-            [
-                'echarts',
-                'echarts/chart/line',
-                'echarts/chart/pie',
-                'echarts/chart/bar',
-                'echarts/chart/funnel'
-            ],
-            initCharts(browser)
-        );
+
         $(function() {
             $("#sel_browser").val('<%= browser %>').on("change", function() {
                 window.location = `/${this.value}${window.location.search}`;
             });
 
-
-            var show_format = "YYYY/MM/DD";
-            var start = moment('<%= start%>', show_format);
-            var end = moment('<%= end%>', show_format);
-
-            function choose_daterange_cb(start, end, chosen_label) {
-
-                start = start.format(show_format);
-                end = end.format(show_format);
-                if (chosen_label == "first_init") {
-                    $('#browse_range span').html(`${start} - ${end}`);
-                } else {
-                    window.location = `${window.location.pathname}?start=${start}&end=${end}`;
-                }
-            }
+            var start = moment('<%= start%>', SHOW_FORMAT);
+            var end = moment('<%= end%>', SHOW_FORMAT);
 
             $('#browse_range').daterangepicker({
                 startDate: start,
                 endDate: end,
-                format: show_format,
+                minDate: moment(parseInt('<%= minDate%>')),
+                maxDate: moment(parseInt('<%= maxDate%>')),
+                format: SHOW_FORMAT,
                 ranges: {
                    'Yesterday': [moment().subtract(1, 'days'), moment()],
                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
                 }
-            }, choose_daterange_cb);
+            }, chooseDaterangeCB);
 
-            choose_daterange_cb(start, end, "first_init");
+            chooseDaterangeCB(start, end, "firstInit");
+
+            configChart('<%= browser %>', JSON.parse('<%-dailyVisits%>'), JSON.parse('<%-urlsFreq%>'));
 
         });
     </script>
@@ -110,7 +84,7 @@
                     <th>Title</th>
                 </tr>
                 <%
-                    urlsFreq = JSON.parse(urlsFreq);
+                    var urlsFreq = JSON.parse(urlsFreq);
                     for(var i=0; i<urlsFreq.length; i++) {
                 %>
                     <tr>
