@@ -41,6 +41,10 @@ Afterwards, it's got a big rewrite in [ClojureScript](https://github.com/clojure
 
 Since it's written in cljs, so [lein](https://leiningen.org/) is required to develop this extension. To get the final release version, run [release.sh](./cljs-src/release.sh) script, it will generate a zip file in your home directory.
 
+
+Since it's written in cljs, so [lein](https://leiningen.org/) is required to develop this extension. To get the final release version, run [release.sh](./release.sh) script, it will generate a zip file in your home directory.
+
+
 - [extensions](https://github.com/jiacai2050/better-history/tree/extensions) branch used for Firefox/Chrome extensions, thanks to [WebExtensions](https://developer.mozilla.org/Add-ons/WebExtensions) -- Write once, Run All browsers.
 - [master](https://github.com/jiacai2050/better-history/tree/master) branch used for Node.js
 
