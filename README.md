@@ -1,19 +1,31 @@
-## better-history   [![NPM](https://img.shields.io/npm/v/better-history.svg)](https://www.npmjs.com/package/better-history) [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/mkfgjjeggnmkbobjmelbjhdchcoadnin.svg)](https://chrome.google.com/webstore/detail/advanced-history/mkfgjjeggnmkbobjmelbjhdchcoadnin) [![Stars](https://img.shields.io/github/stars/jiacai2050/better-history.svg)](https://github.com/jiacai2050/better-history/stargazers)
+## History Master   [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/mkfgjjeggnmkbobjmelbjhdchcoadnin.svg?style=plastic)](https://chrome.google.com/webstore/detail/gooreplacer/mkfgjjeggnmkbobjmelbjhdchcoadnin) [![Mozilla Add-on](https://img.shields.io/amo/v/history-master.svg?style=plastic)](https://addons.mozilla.org/firefox/addon/history-master/)
 
-> 💡 Get a better sense of browsing history via Chrome/Firefox 💡
+> 💡 Visualize browsing history, Discover your unknown habits, downloads supported.
 
-Nowadays everyone surfs the Internet a lot, but I don't think everyone have a clear sense of their browsing habits.
+> 🏆 Try to be the best practical history manager ever! 
 
-`better-history` comes to the rescue. Chrome and Firefox are supported. Hope you enjoy. 💗
+Open an issue If you have any problems/suggestions. 💗
+
+## Install
 
 - [Chrome Web Store](https://chrome.google.com/webstore/detail/advanced-history/mkfgjjeggnmkbobjmelbjhdchcoadnin)
-- [Mozilla Add-ons](https://addons.mozilla.org/firefox/addon/advanced-history/)
+- [Mozilla Add-ons](https://addons.mozilla.org/firefox/addon/history-master/)
 
+## Screenshots
+
+![activity](screenshots/activity.jpg)
+![Page Views](screenshots/pv.png)
+![URL Schemes](screenshots/url_scheme.png)
 
 ## Development
 
-- [master](https://github.com/jiacai2050/better-history/tree/master) branch used for Node.js
+History Master is written in pure JavaScript before v2.0.0, you can check this version at [legacy-js-src](legacy-js-src).
+
+After v2.0.0, it gets a big rewrite in [ClojureScript](https://github.com/clojure/clojurescript) + [Reagent](https://github.com/reagent-project/reagent) + [Re-frame](https://github.com/Day8/re-frame) + [Ant.design](https://ant.design/)，which locates in [cljs-src](cljs-src).
+
 - [extensions](https://github.com/jiacai2050/better-history/tree/extensions) branch used for Firefox/Chrome extensions, thanks to [WebExtensions](https://developer.mozilla.org/Add-ons/WebExtensions) -- Write once, Run All browsers.
+- [master](https://github.com/jiacai2050/better-history/tree/master) branch used for Node.js
+
 
 ## License
 
