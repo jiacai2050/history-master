@@ -7,7 +7,6 @@
                  [antizer "0.2.2" :exclusions [cljsjs/antd]]
                  [reagent "0.7.0"]
                  [re-frame "0.10.3-beta1"]
-                 [org.clojure/core.async "0.3.465"]
                  [org.clojure/clojurescript "1.9.946"]
                  [cljsjs/moment "2.17.1-1"]]
   :target-path "target/%s/"
@@ -17,7 +16,7 @@
                              [lein-cljsbuild "1.1.7"]
                              [lein-doo "0.1.8"]]
                    :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
-                   :source-paths ["src/background" "src/option"]}
+                   :source-paths ["src/option"]}
              :dev-option {:clean-targets ^{:protect false} [:target-path "resources/dev/option/js"]
                           :cljsbuild {:builds [{:id "dev"
                                                 :figwheel true
@@ -40,9 +39,6 @@
                                                         :externs ["externs/chrome_extensions.js" "externs/chrome.js" "externs/echarts.ext.js"]
                                                         :optimizations :advanced
                                                         :main history_master.option}}]}}}
-  :aliases {"option"   ["with-profile" "dev-option" "do"
-                        ["clean"]
-                        ["figwheel" "dev"]]
-            "bg"       ["with-profile" "dev-background" "do"
-                        ["clean"]
-                        ["figwheel" "dev"]]})
+  :aliases {"option" ["with-profile" "dev-option" "do"
+                      ["clean"]
+                      ["figwheel" "dev"]]})

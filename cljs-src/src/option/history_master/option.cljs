@@ -42,7 +42,7 @@
          {:ranges {:Today [(js/moment) (-> (js/moment) (.add 1 "days"))]
                    :Yesterday [(-> (js/moment) (.subtract 1 "days")) (js/moment)]
                    "Last 7 Days" default-range
-                   "Last 30 Days" [(-> (js/moment) (.subtract 30 "days")) (js/moment)]}
+                   "Last 30 Days" [(-> (js/moment) (.subtract 29 "days")) (-> (js/moment) (.add 1 "days"))]}
           :disabled-date (fn [current]
                            (> (.valueOf current) (-> (js/moment) (.add 1 "days") (.valueOf))))
           :default-value @selected-range

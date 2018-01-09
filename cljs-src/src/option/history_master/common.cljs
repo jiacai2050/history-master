@@ -2,10 +2,10 @@
   (:require [clojure.string :as str]))
 
 (def homepage "https://github.com/jiacai2050/history-master")
-(def default-range [(-> (js/moment) (.subtract 7 "days")) (js/moment)])
+(def default-range [(-> (js/moment) (.subtract 6 "days")) (-> (js/moment) (.add 1 "days"))])
 (def search-limit (dec (.pow js/Math 2 31)))
 (def date-format "YYYY-MM-DD")
-(def time-format "HH:mm:SS")
+(def time-format "HH:mm:ss")
 (def datetime-format (str date-format " " time-format))
 
 (def one-day-in-ms (* 1000 60 60 24))

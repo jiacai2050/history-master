@@ -1,6 +1,5 @@
 (ns history-master.chrome
-  (:require [cljs.core.async :refer [<! >! chan] :refer-macros [go]]
-            [re-frame.core :as rf]
+  (:require [re-frame.core :as rf]
             [reagent.core :as r]
             [history-master.common :refer [search-limit default-range] :as c]))
 
