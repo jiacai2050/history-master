@@ -4,7 +4,7 @@
 
 > 🏆 Try to be the best practical history manager ever! 
 
-[Open an issue](./issues/new) If you have any problems/suggestions. 💗
+[Open an issue](https://github.com/jiacai2050/history-master/issues/new) If you have any problems/suggestions. 💗
 
 ## Install
 
@@ -22,7 +22,7 @@
 - Inspiring chart views
 
     1. Line chart for page views
-    2. Pie chart for top-n visited website, by title or domain
+    2. Pie chart for top-n visited websites, by title or domain
     3. Pie chart for URL schemes
 
 ## Screenshots
