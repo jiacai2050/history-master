@@ -1,8 +1,9 @@
-## History Master   [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/mkfgjjeggnmkbobjmelbjhdchcoadnin.svg?style=plastic)](https://chrome.google.com/webstore/detail/gooreplacer/mkfgjjeggnmkbobjmelbjhdchcoadnin) [![Mozilla Add-on](https://img.shields.io/amo/v/history-master.svg?style=plastic)](https://addons.mozilla.org/firefox/addon/history-master/)
+## History Master  [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/mkfgjjeggnmkbobjmelbjhdchcoadnin.svg?style=plastic)](https://chrome.google.com/webstore/detail/gooreplacer/mkfgjjeggnmkbobjmelbjhdchcoadnin) [![Mozilla Add-on](https://img.shields.io/amo/v/history-master.svg?style=plastic)](https://addons.mozilla.org/firefox/addon/history-master/)
 
-> 💡 Visualize browsing history, Discover your unknown habits, downloads supported.
+> 💡 Visualize browsing history, Discover your unknown habits, download supported!
 
-> 🏆 Try to be the best practical history manager ever! 
+> 🏆 Try to be the best practical history manager ever!
+
 
 [Open an issue](https://github.com/jiacai2050/history-master/issues/new) If you have any problems/suggestions. 💗
 
@@ -40,10 +41,6 @@ History Master is written in pure JavaScript before v2.0.0, you can check this v
 Afterwards, it's got a big rewrite in [ClojureScript](https://github.com/clojure/clojurescript) + [Reagent](https://github.com/reagent-project/reagent) + [Re-frame](https://github.com/Day8/re-frame) + [Ant.design](https://ant.design/)，which locates in [cljs-src](cljs-src).
 
 Since it's written in cljs, so [lein](https://leiningen.org/) is required to develop this extension. To get the final release version, run [release.sh](./cljs-src/release.sh) script, it will generate a zip file in your home directory.
-
-
-Since it's written in cljs, so [lein](https://leiningen.org/) is required to develop this extension. To get the final release version, run [release.sh](./release.sh) script, it will generate a zip file in your home directory.
-
 
 - [extensions](https://github.com/jiacai2050/better-history/tree/extensions) branch used for Firefox/Chrome extensions, thanks to [WebExtensions](https://developer.mozilla.org/Add-ons/WebExtensions) -- Write once, Run All browsers.
 - [master](https://github.com/jiacai2050/better-history/tree/master) branch used for Node.js

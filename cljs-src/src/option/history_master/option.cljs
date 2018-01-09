@@ -63,7 +63,7 @@
         "activity" [activity-tab]
         "stat" [stat-tab])]
      [ant/layout-footer {:style {:text-align "center"}}
-      [:p [:a {:href c/homepage :target "_blank"} 
+      [:p [:a {:href c/homepage :target "_blank"}
            [ant/icon {:type "left"}]
            [ant/icon {:type "right"}]]
        " With "

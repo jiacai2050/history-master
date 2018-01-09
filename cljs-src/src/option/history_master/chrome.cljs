@@ -119,7 +119,7 @@
          upper (c/trim-date->tomorrow current-day)]
      (->> histories
           (filter (fn [{:keys [visit-time]}]
-                    (and 
+                    (and
                      (<= lower visit-time)
                      (< visit-time upper))))
           (sort-by #(- (:visit-time %)))))))
@@ -148,7 +148,7 @@
     pv-trend)))
 
 (rf/reg-sub
- :total 
+ :total
  :<- [:histories]
  (fn [histories _]
    (count histories)))
@@ -202,8 +202,11 @@
  :delete-history
  (fn [_ [_ {:keys [via params] :as opts}]]
    {:chrome-delete (case via
-                     :single (let [visit-time params
-                                   delta 0.1]
+                     :range (let [{:keys [start end]} opts]
+                              [start end])
+                     :single (let [{:keys [item]} opts
+                                   {:keys [visit-time]} item
+                                   delta 1]
                                ;; Chrome extension doesn't support deleteById, so we deleteByRange
                                {:via :range :params [(- visit-time delta) (+ visit-time delta)]})
                      (:range :all-like-this) opts)}))
