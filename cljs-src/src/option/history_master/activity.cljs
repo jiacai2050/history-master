@@ -39,6 +39,8 @@
                            :render (fn [text record idx]
                                      (let [url (.-url record)]
                                        (r/as-element [ant/popover {:content (r/as-element [:a {:target "_blank" :href url} url])}
+                                                      [:img {:src (str "chrome://favicon/" url)}]
+                                                      " "
                                                       [:a {:href url :target "_blank"} (subs text 0 300)]])))}
                           {:title "Visit Count" :dataIndex "visit-count" :width 130 :sorter #(comparsion %1 %2 :visit-count)}
                           {:title "Action" :key "action" :width 80
