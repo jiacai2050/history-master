@@ -1,6 +1,6 @@
 {
   "name": "History Master",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "description": "Visualize browsing history, Discover your unknown habits.",
   "background": {
     "scripts": ["background.js"]

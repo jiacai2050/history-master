@@ -3,6 +3,8 @@
             [reagent.core :as r]
             [history-master.common :refer [search-limit default-range] :as c]))
 
+(def standard-interceptors [(when ^boolean goog.DEBUG rf/debug)])
+
 (rf/reg-fx
  :chrome-query
  (fn [[start end text]]
@@ -12,29 +14,31 @@
                                        :endTime end
                                        :maxResults search-limit})
                              (fn [items]
-                               ;; (.log js/console items)
                                (rf/dispatch [:query-result items])))))
 
 (rf/reg-event-fx
  :boot
  (fn [{:keys [db]} _]
    (let [range-in-ms (map #(-> % (.valueOf) c/trim-date->today)
-                          default-range)]
+                          default-range)
+         series-ranges (apply c/gen-date-ranges range-in-ms)]
      {:db (assoc db
                  :loading? true
-                 :date-range range-in-ms)
+                 :date-range range-in-ms
+                 :series-ranges series-ranges
+                 :selected-day (first series-ranges))
       :chrome-query range-in-ms})))
 
 (rf/reg-event-fx
  :query-history
- (fn [{:keys [db]} [_ start end text]]
-   (let [[start-ts end-ts] (map #(-> % (.valueOf) c/trim-date->today)
-                                [start end])]
+ (fn [{:keys [db]} [_ text]]
+   (let [[start-ts end-ts] (:date-range db)
+         series-ranges (c/gen-date-ranges start-ts end-ts)]
      {:db (assoc db
                  :loading? true
-                 :date-range [start-ts end-ts])
+                 :series-ranges series-ranges
+                 :selected-day (first series-ranges))
       :chrome-query [start-ts end-ts text]})))
-
 
 (rf/reg-event-db
  :query-result
@@ -47,6 +51,27 @@
  :date-range
  (fn [db _]
    (:date-range db)))
+
+(rf/reg-event-db
+ :set-date-range
+ (fn [db [_ date-range]]
+   (assoc db :date-range (map #(-> % (.valueOf) c/trim-date->today)
+                              date-range))))
+
+(rf/reg-sub
+ :series-ranges
+ (fn [db _]
+   (:series-ranges db)))
+
+(rf/reg-event-db
+ :update-selected-day
+ (fn [db [_ selected-day]]
+   (assoc db :selected-day selected-day)))
+
+(rf/reg-sub
+ :selected-day
+ (fn [{:keys [selected-day available-ranges] :as db} _]
+   (js/parseInt (or selected-day (first available-ranges)))))
 
 (rf/reg-sub
  :loading?
@@ -68,7 +93,8 @@
 (rf/reg-sub
  :visit-details-by-day
  :<- [:histories]
- (fn [histories [_ current-day]]
+ :<- [:selected-day]
+ (fn [[histories current-day] _]
    (let [lower (c/trim-date->today current-day)
          upper (c/trim-date->tomorrow current-day)]
      (->> histories
@@ -165,3 +191,47 @@
  (fn [db [_ start end]]
    (update db :histories #(remove (fn [item] (<= start (:lastVisitTime item) end))
                                   %))))
+
+
+(rf/reg-fx
+ :url-visits
+ (fn [url]
+   (js/chrome.history.getVisits (clj->js {:url url})
+                                #(rf/dispatch [:get-visits-done %]))))
+
+(rf/reg-event-fx
+ :get-visits
+ (fn [_ [_ url]]
+   {:url-visits url}))
+
+(rf/reg-event-db
+ :get-visits-done
+ (fn [db [_ url-visits]]
+   (assoc db :url-visits (js->clj url-visits :keywordize-keys true))))
+
+(rf/reg-sub
+ :url-visits
+ (fn [db _]
+   (:url-visits db)))
+
+(rf/reg-sub
+ :visit-types
+ :<- [:url-visits]
+ (fn [url-visits _]
+   (->> url-visits
+        (group-by :transition)
+        (map (fn [[k v]]
+               {:name k :value (count v)})))))
+
+(rf/reg-sub
+ :visit-trend
+ :<- [:url-visits]
+ (fn [url-visits _]
+   (->> url-visits
+        (map (fn [{:keys [visitTime]}]
+               {:visit-day (c/trim-date->today visitTime)}))
+        (group-by :visit-day)
+        (map (fn [[visit-day items]]
+               {:visit-day visit-day
+                :pv (count items)}))
+        (sort-by :visit-day))))

@@ -13,7 +13,7 @@
   "Param isn't used directly in render fn, instead extract it in component-did-update fn to render.
   Param as prop is used to trigger rerender with lifecycle functions.
   https://github.com/Day8/re-frame/wiki/When-do-components-update%3F"
-  [_]
+  [_ width height]
   (let [render-chart (fn [div daily-visits]
                        (let [chart (.init js/echarts div)
                              opts {:color ["#23B7E5"]
@@ -44,12 +44,12 @@
                          (render-chart (r/dom-node this) (second (r/argv this))))]
     (r/create-class
      {:display-name "pv-trend"
-      :reagent-render (fn [] [:div {:style {:width chart-width :height 400}}])
+      :reagent-render (fn [] [:div {:style {:width (or width chart-width) :height (or height 400)}}])
       :component-did-mount init-component
       :component-did-update init-component})))
 
 (defn pie-chart
-  [_]
+  [_ width height]
   (let [render-chart (fn [div items]
                        (let [chart (.init js/echarts div)
                              opts {:tooltip {:trigger "item"
@@ -69,7 +69,7 @@
                          (render-chart (r/dom-node this) (second (r/argv this))))]
     (r/create-class
      {:display-name "visit-percentage"
-      :reagent-render (fn [] [:div {:style {:width chart-width :height 400}}])
+      :reagent-render (fn [] [:div {:style {:width (or width chart-width) :height (or height 400)}}])
       :component-did-mount init-component
       :component-did-update init-component})))
 

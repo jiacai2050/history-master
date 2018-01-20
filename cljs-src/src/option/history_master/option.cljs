@@ -20,39 +20,35 @@
                                              :filename filename}))))
 
 (defn top-nav [selected-menu]
-  (r/with-let [selected-range (r/atom default-range)]
-    [ant/affix
-     [:div {:style {:background-color "#001529"}}
-      [ant/row {:type "flex" :align "middle"}
-       [ant/col {:span 3} [ant/button {:type "primary" :icon "dashboard" :ghost true :size "large" :target "_blank"
-                                        :href c/homepage} "History Master"]]
-       [ant/col {:span 7} [ant/menu {:selected-keys [@selected-menu] :theme "dark" :mode "horizontal"
-                                     :on-click (fn [e] (let [clicked-menu (.-key e)]
-                                                         (if (= "download" clicked-menu)
-                                                           (download-csv)
-                                                           (reset! selected-menu (.-key e))))) }
-                           [ant/menu-item {:key "activity"} [ant/icon {:type "profile"}] "Activity"]
-                           [ant/menu-item {:key "stat"} [ant/icon {:type "area-chart"}] "Statistics"]
-                           [ant/menu-item {:key "download"} [ant/icon {:type "download"}] "Download as CSV"]]]
-       [ant/col {:span 14}
-        [ant/button {:ghost true :type "primary"
-                     :on-click #(ant/message-info "Have a nice day!")}
-         (str @(rf/subscribe [:total]) " results.")]
-        [ant/date-picker-range-picker
-         {:ranges {:Today [(js/moment) (-> (js/moment) (.add 1 "days"))]
-                   :Yesterday [(-> (js/moment) (.subtract 1 "days")) (js/moment)]
-                   "Last 7 Days" default-range
-                   "Last 30 Days" [(-> (js/moment) (.subtract 29 "days")) (-> (js/moment) (.add 1 "days"))]}
-          :disabled-date (fn [current]
-                           (> (.valueOf current) (-> (js/moment) (.add 1 "days") (.valueOf))))
-          :default-value @selected-range
-          :on-change (fn [dates date-strs]
-                       (reset! selected-range dates))}]
-[ant/input-search {:placeholder "Leave this to retrieve all" :enter-button "Search" :style {:width 300}
-                   :on-search (fn [v] (rf/dispatch (conj (into [:query-history] @selected-range) v)))}]]
-       ;; [ant/col {:span 5}
-       ;;  ]
-       ]]]))
+  [ant/affix
+   [:div {:style {:background-color "#001529"}}
+    [ant/row {:type "flex" :align "middle"}
+     [ant/col {:span 3} [ant/button {:type "primary" :icon "dashboard" :ghost true :size "large" :target "_blank"
+                                     :href c/homepage} "History Master"]]
+     [ant/col {:span 7} [ant/menu {:selected-keys [@selected-menu] :theme "dark" :mode "horizontal"
+                                   :on-click (fn [e] (let [clicked-menu (.-key e)]
+                                                       (if (= "download" clicked-menu)
+                                                         (download-csv)
+                                                         (reset! selected-menu (.-key e))))) }
+                         [ant/menu-item {:key "activity"} [ant/icon {:type "profile"}] "Activity"]
+                         [ant/menu-item {:key "stat"} [ant/icon {:type "area-chart"}] "Statistics"]
+                         [ant/menu-item {:key "download"} [ant/icon {:type "download"}] "Download as CSV"]]]
+     [ant/col {:span 14}
+      [ant/button {:ghost true :type "primary"
+                   :on-click #(ant/message-info "Have a nice day!")}
+       (str @(rf/subscribe [:total]) " results.")]
+      [ant/date-picker-range-picker
+       {:ranges {:Today [(js/moment) (-> (js/moment) (.add 1 "days"))]
+                 :Yesterday [(-> (js/moment) (.subtract 1 "days")) (js/moment)]
+                 "Last 7 Days" default-range
+                 "Last 30 Days" [(-> (js/moment) (.subtract 29 "days")) (-> (js/moment) (.add 1 "days"))]}
+        :disabled-date (fn [current]
+                         (> (.valueOf current) (-> (js/moment) (.add 1 "days") (.valueOf))))
+        :default-value default-range
+        :on-change (fn [dates date-strs]
+                     (rf/dispatch [:set-date-range dates]))}]
+      [ant/input-search {:placeholder "Leave this to retrieve all" :enter-button "Search" :style {:width 300}
+                         :on-search (fn [v] (rf/dispatch [:query-history v]))}]]]]])
 
 (defn main-body []
   (r/with-let [selected-menu (r/atom "activity")]
@@ -60,7 +56,7 @@
      [top-nav selected-menu]
      [ant/spin {:size "large" :tip "Loading...." :spinning @(rf/subscribe [:loading?])}
       (case @selected-menu
-        "activity" [activity-tab (apply c/gen-date-ranges @(rf/subscribe [:date-range]))]
+        "activity" [activity-tab]
         "stat" [stat-tab])]
      [ant/layout-footer {:style {:text-align "center"}}
       [:p [:a {:href c/homepage :target "_blank"} 

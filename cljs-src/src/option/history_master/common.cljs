@@ -2,6 +2,7 @@
   (:require [clojure.string :as str]))
 
 (def homepage "https://github.com/jiacai2050/history-master")
+(def transition-doc (str homepage "/wiki/Transition-Type"))
 (def default-range [(-> (js/moment) (.subtract 6 "days")) (-> (js/moment) (.add 1 "days"))])
 (def search-limit (dec (.pow js/Math 2 31)))
 (def date-format "YYYY-MM-DD")

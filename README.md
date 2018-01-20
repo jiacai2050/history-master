@@ -24,12 +24,14 @@
     1. Line chart for page views
     2. Pie chart for top-n visited websites, by title or domain
     3. Pie chart for URL schemes
+    4. Pie chart for [Transistion type](https://github.com/jiacai2050/history-master/wiki/Transition-Type)
 
 ## Screenshots
 
 ![activity](screenshots/activity.jpg)
 ![Page Views](screenshots/pv.png)
 ![URL Schemes](screenshots/url_scheme.png)
+![Transition Type](screenshots/transition.png)
 
 ## Development
 
