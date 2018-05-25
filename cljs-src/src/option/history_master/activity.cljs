@@ -5,6 +5,7 @@
             [goog.string :as gstr]
             [goog.string.format]
             [history-master.common :refer [default-range] :as c]
+            [history-master.local-db :as db]
             [history-master.stat :refer [pie-chart pv-trend]]))
 
 (defn timeline-sidebar []
@@ -61,7 +62,8 @@
                                                                                                                 :item (js->clj record :keywordize-keys true)}])}
                                                     [ant/button {:icon "delete" :type "danger"}]]))}]
                 :pagination {:show-size-changer true
-                             :default-page-size 50
+                             :default-page-size @db/page-size
+                             :on-show-size-change (fn [page page-size] (reset! db/page-size page-size))
                              :page-size-options ["50" "100" "200" "500"]
                              :show-total #(str "Total: " % " ")}}]))
 

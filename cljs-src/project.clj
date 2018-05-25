@@ -9,6 +9,7 @@
                  [reagent "0.8.0-alpha2" :exclusions [cljsjs/react]]
                  [re-frame "0.10.3-beta1"]
                  [org.clojure/clojurescript "1.9.946"]
+                 [alandipert/storage-atom "2.0.1"]
                  [cljsjs/moment "2.17.1-1"]]
   :target-path "target/%s/"
   :profiles {:dev {:dependencies [[figwheel-sidecar "0.5.14"]

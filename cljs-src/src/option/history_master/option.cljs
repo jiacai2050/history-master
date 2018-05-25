@@ -2,6 +2,7 @@
   (:require [history-master.chrome]
             [history-master.stat :refer [stat-tab]]
             [history-master.activity :refer [activity-tab]]
+            [history-master.local-db :refer [current-version]]
             [antizer.reagent :as ant]
             [history-master.common :refer [default-range] :as c]
             [goog.dom :as gdom]
@@ -66,7 +67,7 @@
        [ant/icon {:type "heart"}]
        " by "
        [:a {:href "http://liujiacai.net" :target "_blank"} "Jiacai Liu."]
-       " Current version: " (->> js/chrome.runtime (.getManifest) (.-version))]]]))
+       " Current version: " (current-version)]]]))
 
 (rf/dispatch-sync [:boot])
 (r/render [main-body]
