@@ -1,6 +1,6 @@
 {
   "name": "History Master",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "Visualize browsing history, Discover your unknown habits.",
   "background": {
     "scripts": ["background.js"]
@@ -30,6 +30,6 @@
     "128": "option/images/128.png"
   },
   "permissions": ["history", "tabs", "downloads", "chrome://favicon/"],
-  "content_security_policy": "default-src 'self'; style-src https://cdn.bootcss.com 'unsafe-inline'; img-src chrome://favicon; connect-src ws://localhost:* ; font-src https://* ;script-src https://cdn.bootcss.com 'self' 'unsafe-eval'",
+  "content_security_policy": "default-src 'self'; style-src https://cdnjs.cloudflare.com 'unsafe-inline'; img-src chrome://favicon; connect-src ws://localhost:* ; font-src https://* ;script-src https://cdnjs.cloudflare.com 'self' 'unsafe-eval'",
   "manifest_version": 2
 }
