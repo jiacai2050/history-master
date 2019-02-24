@@ -168,29 +168,35 @@
 ;; remove history
 (rf/reg-fx
  :chrome-delete
- (fn [[start end]]
-   (js/chrome.history.deleteRange (clj->js
-                                   {:startTime start 
-                                    :endTime end})
-                                  #(rf/dispatch [:delete-done start end]))))
+ (fn [{:keys [via params] :as opts}]
+
+   (case via
+     :range (let [[start end] params]
+              (js/chrome.history.deleteRange (clj->js {:startTime start
+                                                       :endTime end})
+                                             #(rf/dispatch [:delete-done opts])))
+     :all-like-this (js/chrome.history.deleteUrl (clj->js {:url params})
+                                                 #(rf/dispatch [:delete-done opts])))))
 
 (rf/reg-event-fx
  :delete-history
- (fn [_ [_ {:keys [via] :as opts}]]
+ (fn [_ [_ {:keys [via params] :as opts}]]
    {:chrome-delete (case via
-                     :range (let [{:keys [start end]} opts]
-                              [start end])
-                     :single (let [{:keys [item]} opts
-                                   {:keys [visit-time]} item
+                     :single (let [visit-time params
                                    delta 0.1]
                                ;; Chrome extension doesn't support deleteById, so we deleteByRange
-                               [(- visit-time delta) (+ visit-time delta)]))}))
+                               {:via :range :params [(- visit-time delta) (+ visit-time delta)]})
+                     (:range :all-like-this) opts)}))
 
 (rf/reg-event-db
  :delete-done
- (fn [db [_ start end]]
-   (update db :histories #(remove (fn [item] (<= start (:lastVisitTime item) end))
-                                  %))))
+ (fn [db [_ {:keys [via params]} start end]]
+   (update db :histories #(case via
+                            :range (let [[start end] params]
+                                     (remove (fn [item] (<= start (:lastVisitTime item) end))
+                                             %))
+                            :all-like-this (remove (fn [{:keys [url]}] (= url params))
+                                                   %)))))
 
 
 (rf/reg-fx

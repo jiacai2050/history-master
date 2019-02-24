@@ -28,6 +28,12 @@
         histories (rf/subscribe [:visit-details-by-day])]
     [ant/table {:dataSource @histories :bordered true :row-key "id" :size "small" :style {:width "80%"}
                 :title (constantly (r/as-element [:center (c/date->human @selected-day)]))
+                :footer (constantly (r/as-element [:center [ant/popconfirm {:title "Are you sure?"
+                                                                            :on-confirm #(do (rf/dispatch [:delete-history {:via :range
+                                                                                                                            :params [(c/trim-date->today @selected-day)
+                                                                                                                                     (c/trim-date->tomorrow @selected-day)]
+}]))}
+                                                            [ant/button {:type "danger"} "Delete ALL on this day!"]]]))
                 :scroll {:y 900}
                 :columns [{:title "Visit Time" :dataIndex "visit-time" :width 100
                            :render #(c/time->human %)
@@ -57,9 +63,13 @@
                                                                                       (reset! display-visit? true))} text]))}
                           {:title "Action" :key "action" :width 80
                            :render (fn [text record]
-                                     (r/as-element [ant/popconfirm {:title "Are you sure?"
+                                     (r/as-element [ant/popconfirm {:title "Delete this only or all same url?"
+                                                                    :cancel-text "All same url"
+                                                                    :ok-text "Only this"
                                                                     :on-confirm #(rf/dispatch [:delete-history {:via :single
-                                                                                                                :item (js->clj record :keywordize-keys true)}])}
+                                                                                                                :params (:visit-time (js->clj record :keywordize-keys true))}])
+                                                                    :on-cancel #(rf/dispatch [:delete-history {:via :all-like-this
+                                                                                                               :params (.-url record)}])}
                                                     [ant/button {:icon "delete" :type "danger"}]]))}]
                 :pagination {:show-size-changer true
                              :default-page-size @db/page-size
