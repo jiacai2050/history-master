@@ -47,6 +47,26 @@
           :histories (js->clj items :keywordize-keys true)
           :loading? false)))
 
+(rf/reg-event-fx
+ :add-history
+ (fn [{:keys [db]} [_ history]]
+   {:chrome-add history}))
+
+(rf/reg-fx
+ :chrome-add
+ (fn [history]
+   (js/chrome.history.addUrl (clj->js (if (c/is-google-chrome?)
+                                        ;; history.addUrl only support url in Google Chrome, sad.
+                                        {:url (:url history)}
+                                        history))
+                             (fn []
+                               (rf/dispatch [:add-result history])))))
+
+(rf/reg-event-db
+ :add-result
+ (fn [db [_ history]]
+   (update db :histories #(conj % history))))
+
 (rf/reg-sub
  :date-range
  (fn [db _]

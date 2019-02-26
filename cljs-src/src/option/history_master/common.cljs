@@ -60,3 +60,7 @@
                      (str/join ","))))
          (into [(str/join "," (map name columns))])
          (str/join "\n"))))
+
+(defn is-google-chrome? []
+  (str/index-of js/navigator.userAgent
+                "Chrome"))

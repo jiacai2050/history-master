@@ -3,8 +3,9 @@
             [history-master.stat :refer [stat-tab]]
             [history-master.activity :refer [activity-tab]]
             [history-master.local-db :refer [current-version]]
-            [antizer.reagent :as ant]
+            [history-master.io :as io]
             [history-master.common :refer [default-range] :as c]
+            [antizer.reagent :as ant]
             [goog.dom :as gdom]
             [re-frame.core :as rf]
             [cljsjs.moment]
@@ -12,13 +13,6 @@
             [clojure.string :as str]))
 
 (enable-console-print!)
-
-(defn download-csv []
-  (let [content (js/Blob. [(c/to-csv @(rf/subscribe [:histories]))])
-        filename (str (str/join "_" (map c/date->human @(rf/subscribe [:date-range]))) ".csv")]
-    (.download js/chrome.downloads (clj->js {:url (.createObjectURL js/window.URL content)
-                                             :saveAs true
-                                             :filename filename}))))
 
 (defn top-nav [selected-menu]
   [ant/affix
@@ -28,12 +22,20 @@
                                      :href c/homepage} "History Master"]]
      [ant/col {:span 7} [ant/menu {:selected-keys [@selected-menu] :theme "dark" :mode "horizontal"
                                    :on-click (fn [e] (let [clicked-menu (.-key e)]
-                                                       (if (= "download" clicked-menu)
-                                                         (download-csv)
-                                                         (reset! selected-menu (.-key e))))) }
+                                                       (case clicked-menu
+                                                         "export" (io/export-histories)
+                                                         "import" (io/import-histories)
+                                                         (reset! selected-menu clicked-menu))))}
                          [ant/menu-item {:key "activity"} [ant/icon {:type "profile"}] "Activity"]
                          [ant/menu-item {:key "stat"} [ant/icon {:type "area-chart"}] "Statistics"]
-                         [ant/menu-item {:key "download"} [ant/icon {:type "download"}] "Download as CSV"]]]
+                         [ant/menu-sub-menu {:title (r/as-element [:span {:class "submenu-title-wrapper"}
+                                                                   [ant/icon {:type "sync"}]
+                                                                   [ant/tooltip {:title "among Firefox/Chrome" :placement "right"}
+                                                                    "Sync"]
+                                                                   ])}
+                          [ant/menu-item {:key "export"} [ant/icon {:type "download"}] "Export"]
+                          [ant/menu-item {:key "import"} [ant/icon {:type "upload"}] [ant/tooltip {:title "NOTE: Chrome only support add histories at current time."}
+                                                                                      "Import"]]]]]
      [ant/col {:span 14}
       [ant/button {:ghost true :type "primary"
                    :on-click #(ant/message-info "Have a nice day!")}
@@ -42,7 +44,8 @@
        {:ranges {:Today [(js/moment) (-> (js/moment) (.add 1 "days"))]
                  :Yesterday [(-> (js/moment) (.subtract 1 "days")) (js/moment)]
                  "Last 7 Days" default-range
-                 "Last 30 Days" [(-> (js/moment) (.subtract 29 "days")) (-> (js/moment) (.add 1 "days"))]}
+                 "Last 30 Days" [(-> (js/moment) (.subtract 29 "days")) (-> (js/moment) (.add 1 "days"))]
+                 "ALL" [(-> (.unix js/moment 0)) (-> (js/moment) (.add 1 "days"))]}
         :disabled-date (fn [current]
                          (> (.valueOf current) (-> (js/moment) (.add 1 "days") (.valueOf))))
         :default-value default-range
