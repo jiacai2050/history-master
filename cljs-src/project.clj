@@ -2,13 +2,13 @@
   :description "Visualize browsing history, Discover your unknown habits, downloads supported."
   :url "https://github.com/jiacai2050/history-master"
   :min-lein-version "2.7.1"
-  :dependencies [[org.clojure/clojure "1.8.0"]
+  :dependencies [[org.clojure/clojure "1.10.0"]
                  [cljsjs/antd "3.1.0-0"]
                  [cljsjs/react "16.2.0-3"]
                  [antizer "0.2.2" :exclusions [cljsjs/antd]]
-                 [reagent "0.8.0-alpha2" :exclusions [cljsjs/react]]
-                 [re-frame "0.10.3-beta1"]
-                 [org.clojure/clojurescript "1.9.946"]
+                 [reagent "0.8.1" :exclusions [cljsjs/react]]
+                 [re-frame "0.10.6"]
+                 [org.clojure/clojurescript "1.10.520"]
                  [alandipert/storage-atom "2.0.1"]
                  [cljsjs/moment "2.17.1-1"]]
   :target-path "target/%s/"

@@ -1,13 +1,10 @@
 {
   "name": "History Master",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "description": "Visualize browsing history, Discover your unknown habits.",
   "background": {
     "scripts": ["background.js"],
     "persistent": false
-  },
-  "chrome_url_overrides": {
-    "history": "option/index.html"
   },
   "options_ui": {
     "page": "option/index.html",
