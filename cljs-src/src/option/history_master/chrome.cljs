@@ -202,10 +202,7 @@
  :delete-history
  (fn [_ [_ {:keys [via params] :as opts}]]
    {:chrome-delete (case via
-                     :range (let [{:keys [start end]} opts]
-                              [start end])
-                     :single (let [{:keys [item]} opts
-                                   {:keys [visit-time]} item
+                     :single (let [visit-time params
                                    delta 1]
                                ;; Chrome extension doesn't support deleteById, so we deleteByRange
                                {:via :range :params [(- visit-time delta) (+ visit-time delta)]})
