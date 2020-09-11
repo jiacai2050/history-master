@@ -1,8 +1,14 @@
+# Notice
+
+Due to [limitation of history search API](https://github.com/jiacai2050/history-master/issues/24), this extension cannot display histories day after day correctly, this is why there are so many issues reporting numbers are wrong.
+
+So I decide to archive this project, Thanks for your attention.
+
 ## History Master   [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/mkfgjjeggnmkbobjmelbjhdchcoadnin.svg?style=plastic)](https://chrome.google.com/webstore/detail/gooreplacer/mkfgjjeggnmkbobjmelbjhdchcoadnin) [![Mozilla Add-on](https://img.shields.io/amo/v/history-master.svg?style=plastic)](https://addons.mozilla.org/firefox/addon/history-master/)
 
 > 💡 Visualize browsing history, Discover your unknown habits, downloads supported.
 
-> 🏆 Try to be the best practical history manager ever! 
+> 🏆 Try to be the best practical history manager ever!
 
 [Open an issue](https://github.com/jiacai2050/history-master/issues/new) If you have any problems/suggestions. 💗
 
