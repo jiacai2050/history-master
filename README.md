@@ -2,7 +2,9 @@
 
 Due to [limitation of history search API](https://github.com/jiacai2050/history-master/issues/24), this extension cannot display histories day after day correctly, this is why there are so many issues reporting numbers are wrong.
 
-So I decide to archive this project, Thanks for your attention.
+So I decide to archive this project, if you like this project, you can try my another project: [1History](https://github.com/1History/1History), which share same design with history-master. 
+
+1History overcame limitation of extension API by query history directly on SQLite files created by browsers, so everything is under control, and works as expected.
 
 ## History Master   [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/mkfgjjeggnmkbobjmelbjhdchcoadnin.svg?style=plastic)](https://chrome.google.com/webstore/detail/gooreplacer/mkfgjjeggnmkbobjmelbjhdchcoadnin) [![Mozilla Add-on](https://img.shields.io/amo/v/history-master.svg?style=plastic)](https://addons.mozilla.org/firefox/addon/history-master/)
 
